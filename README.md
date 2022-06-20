@@ -1,8 +1,4 @@
-# Practice_REST_API
-REST API 연습 예제입니다.
-## 공통
-
-# 기능적 요구사항
+# 기능에 대한 명세
 
 ## 회원 생성
 
@@ -95,6 +91,12 @@ REST API 연습 예제입니다.
 - 관리자는 콘텐츠별 `북마크 수`, `댓글 수`를 조회한다.
 
 
+
+
+# API 설계에 대한 명세
+
+## 공통
+
 ---
 
 - 모든 오퍼레이션의 응답 형식은 `application/json` 형식으로 구현
@@ -125,10 +127,6 @@ GET /member/sign-up/check-email
 
 - 요청 Parameter
 
-| Name | Type | Description |
-| --- | --- | --- |
-| email | String | 사용자가 입력한 이메일 |
-
 ### 닉네임 중복 확인
 
 - 요청
@@ -138,10 +136,6 @@ GET /member/sign-up/check-nickname
 ```
 
 - 요청 Parameter
-
-| Name | Type | Description |
-| --- | --- | --- |
-| nickname | String | 사용자가 입력한 닉네임 |
 
 ### 회원 생성
 
@@ -153,15 +147,6 @@ Content-Type: application/json
 ```
 
 - 요청 Body
-
-| Name | Type | Description |
-| --- | --- | --- |
-| email | String | 이메일 |
-| nickname | String | 닉네임 |
-| password | String | 비밀번호 |
-| passwordRe | String | 비밀번호 재입력 |
-| gender | String | 성별 |
-| regionCode | Number | 지역 코드 |
 
 ## 댓글
 
@@ -184,12 +169,6 @@ X-MEMBER-ID: {memberId}
 
 - 요청 Body
 
-| Name | Type | Description |
-| --- | --- | --- |
-| commentId | Number | 댓글 고유 ID |
-| contentId | String | 콘텐츠 고유 ID |
-| content | String | 댓글 내용 |
-
 ### 댓글 수정
 
 - 요청
@@ -207,12 +186,6 @@ X-MEMBER-ID: {memberId}
 
 - 요청 Body
 
-| Name | Type | Description |
-| --- | --- | --- |
-| commentId | Number | 댓글 고유 ID |
-| contentId | String | 콘텐츠 고유 ID |
-| content | String | 댓글 내용 |
-
 ### 댓글 삭제
 
 - 요청
@@ -224,10 +197,6 @@ X-MEMBER-ID: {memberId}
 
 - 요청 Path properties
 
-| Name | Type | Description |
-| --- | --- | --- |
-| commentId | Number | 댓글 고유 ID |
-
 ### 댓글 목록 조회
 
 - 요청
@@ -237,10 +206,6 @@ GET /comment
 ```
 
 - 요청 Parameter
-
-| Name | Type | Description |
-| --- | --- | --- |
-| contentId | String | 콘텐츠 고유 ID |
 
 ## 콘텐츠 북마크
 
@@ -258,10 +223,6 @@ X-MEMBER-ID: {memberId}
 
 - 요청 Body
 
-| Name | Type | Description |
-| --- | --- | --- |
-| contentId | String | 콘텐츠 고유 ID |
-
 ### 콘텐츠 북마크 취소
 
 - 요청
@@ -272,10 +233,6 @@ X-MEMBER-ID: {memberId}
 ```
 
 - 요청 Parameter
-
-| Name | Type | Description |
-| --- | --- | --- |
-| contentId | String | 콘텐츠 고유 ID |
 
 ### 콘텐츠 북마크 목록 조회
 
@@ -308,10 +265,6 @@ GET /content/{contentId}
 
 - 요청 Path properties
 
-| Name | Type | Description |
-| --- | --- | --- |
-| contentId | String | 콘텐츠 고유 ID |
-
 ## 코드 목록
 
 ---
@@ -327,11 +280,6 @@ GET /region-code/{sido}/{sigungu}
 ```
 
 - 요청 Path properties
-
-| Name | Type | Description |
-| --- | --- | --- |
-| sido | Number | 광역시/도 코드 |
-| sigungu | Number | 시/군/구 코드 |
 
 ## 콘텐츠 통계
 
@@ -360,10 +308,6 @@ GET /member/sign-up/check-email
 ```
 
 - 요청 프로퍼티
-
-| Name | Type | Description |
-| --- | --- | --- |
-| email | String | 사용자가 입력한 이메일 |
 - 응답
 
 ```json
@@ -375,9 +319,3 @@ GET /member/sign-up/check-email
 ```
 
 - 응답 프로퍼티
-
-| Name | Type | Description |
-| --- | --- | --- |
-| code | Number | 응답 코드 |
-| message | String | 응답 메세지 |
-| data | Boolean | 중복 확인 결과 값 |
