@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ContentMapper">
+
+    <select id="selectAll" resultType="Content">
+        SELECT * FROM CONTENT
+    </select>
+
+    <select id="detail" resultType="Content">
+        SELECT UID, OVERVIEW
+            FROM CONTENT b, CONTENT_DETAIL d
+        WHERE b.UID = #{uid}
+    </select>
+
+</mapper>

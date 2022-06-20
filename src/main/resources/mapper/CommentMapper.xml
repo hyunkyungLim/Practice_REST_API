@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommentMapper">
+
+    <insert id="comment">
+        INSERT INTO COMMENT
+                (CM_ID, UID, M_ID,
+                CREATE_AT, CM_CONTENT)
+        VALUES(#{cm_id}, #{uid}, #{m_id},
+                sysdate(), #{cm_content})
+    </insert>
+
+    <update id="update">
+        UPDATE COMMENT
+            SET CREATE_AT= sysdate(),
+                CM_CONTENT= #{cm_content}
+        WHERE CM_ID= #{cm_id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM COMMENT WHERE CM_ID= #{cm_id}
+    </delete>
+
+    <select id="select" resultType="Comment">
+        SELECT * FROM COMMENT
+            WHERE UID = #{uid}
+    </select>
+
+</mapper>

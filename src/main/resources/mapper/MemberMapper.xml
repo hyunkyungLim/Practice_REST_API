@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MemberMapper">
+
+    <select id="checkEmail" resultType="int">
+        SELECT COUNT(*)
+            FROM MEMBER
+            WHERE EMAIL = #{email}
+            AND DELFLAG = "T"
+    </select>
+
+    <select id="checkNickname" resultType="int">
+        SELECT COUNT(*)
+            FROM MEMBER
+            WHERE NICKNAME = #{nickname}
+            AND DELFLAG = "T"
+    </select>
+
+    <insert id="signUp" parameterType="Member">
+        INSERT INTO MEMBER
+            (NICKNAME, EMAIL,
+            COD_ID, PASSWORD,
+            GENDER, DELFLAG)
+        VALUES
+            (#{nickname}, #{email},
+            #{cod_id}, #{password},
+            #{gender}, "T")
+    </insert>
+
+</mapper>

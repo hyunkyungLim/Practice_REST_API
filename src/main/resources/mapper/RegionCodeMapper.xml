@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.RegionCodeMapper">
+
+    <select id="sido" resultType="String">
+        SELECT REGION_CD
+            FROM STANDARD_REGION_CODE
+            WHERE CD_TYPE = 0
+    </select>
+
+    <select id="sigungu" resultType="String">
+        SELECT SIGUNGU_CD
+            FROM STANDARD_REGION_CODE
+            WHERE REGION_CD = #{sido}
+            AND CD_TYPE = 1
+    </select>
+
+    <select id="umd" resultType="String">
+        SELECT UMD_CD
+            FROM STANDARD_REGION_CODE
+            WHERE SIGUNGU_CD = #{sigungu}
+            AND CD_TYPE = 2
+    </select>
+
+</mapper>

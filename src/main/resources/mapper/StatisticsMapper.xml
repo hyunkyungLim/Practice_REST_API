@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StatisticsMapper">
+
+    <select id="statistics" resultType="Statistics">
+        SELECT A.UID, IFNULL(A.CM_COUNT,0) , IFNULL(B.B_COUNT,0)
+        FROM (
+                (
+                    SELECT C.UID AS UID, COUNT(CM.UID) AS CM_COUNT
+                    FROM CONTENT C
+                    LEFT JOIN COMMENT CM
+                    ON C.UID = CM.UID
+                    GROUP BY C.UID
+                ) AS A
+                LEFT JOIN (
+                    SELECT C.UID AS UID, COUNT(B.UID) AS B_COUNT
+                    FROM BOOKMARK B
+                    LEFT JOIN CONTENT C
+                    ON C.UID = B.UID
+                    WHERE B.STATUS = "T"
+                    GROUP BY C.UID
+                ) AS B
+            ON A.UID = B.UID
+        )
+    </select>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BookmarkMapper">
+
+    <insert id="bookmark">
+        INSERT INTO BOOKMARK
+                (UID, STATUS, M_ID)
+        VALUES(#{uid}, "T", #{m_id})
+    </insert>
+
+    <delete id="delete">
+        UPDATE BOOKMARK
+            SET STATUS = "F"
+            WHERE UID = #{uid}
+            AND M_ID = #{m_id}
+    </delete>
+
+    <select id="select" resultType="Bookmark">
+        SELECT * FROM BOOKMARK
+            WHERE STATUS = "T"
+            AND M_ID = #{m_id}
+    </select>
+
+</mapper>
